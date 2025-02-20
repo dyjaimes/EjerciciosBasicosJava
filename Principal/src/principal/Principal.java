@@ -1,6 +1,6 @@
 package principal;
+import java.util.HashSet;
 import java.util.Scanner;
-import java.util.Set;
 
 
 
@@ -14,7 +14,6 @@ public class Principal {
         int numero, peso, piso, temperatura;
         String mensaje;
                
-        
         do {
          System.out.println("Ejercicio 1");
          System.out.println("Ejercicio 2");
@@ -29,8 +28,9 @@ public class Principal {
          System.out.println("escriba el numero del ejercico a realizar:  ");
          numero=obtener.nextInt();
         }while(numero<0 || numero>10);
-         
-        switch (numero){
+        
+        if(numero>=1 && numero <=5 || numero >=7) {
+                    switch (numero){
             
             case 1:
                 Ejercicio1 miEjercicio1 =new Ejercicio1();
@@ -91,8 +91,107 @@ public class Principal {
                 
                 else
                   System.out.println("la temperatura es de  "+  miEjercicio4.setTemperatura()+" grados ");
+                break;
+                
+            case 5:
+                Ejercicio5 miEjercicio5 =  new Ejercicio5();
+                
+                temperatura=miEjercicio5.solicitarTemperatura(obtener, "detectando la temperatura ambiente ");
+                System.out.println( temperatura+ " grados");
+                if(temperatura<=33)
+                {
+                piso=miEjercicio5.solicitarPiso(obtener, "ingrese el piso al cual se dirije: ");
+                miEjercicio5.setpiso(piso);
+                }
+                miEjercicio5.settemperatura(temperatura);
+               break;
+               
+            case 7:
+                double pesoss;
+                Ejercicio7 miEjercicio7 = new Ejercicio7(obtener, "ingrese su peso");
+                pesoss=miEjercicio7.getpeso();
+                miEjercicio7.alturas(obtener, "ingrese la altura");
+                double altura=miEjercicio7.getaltura();
+                
+                double imc;
+                imc=pesoss/(altura*altura);
+                miEjercicio7.setimc(imc);
+                
+                
+                System.out.print("su IMC es de "+imc);
+                
+                break;
+                
+                
+                
+                    }
         }
-        
+                    
+                    if (numero==6){
+                        int cantidad;
+                        double precio;
+                        String product;
+                        int seleccion, descuento=0;
+                        
+                        Ejercicio6 miEjercicio6 =new Ejercicio6("ingrese el tipo de producto: ");
+                        
+                        cantidad=miEjercicio6.cantidad(obtener, "digite la cantidad del producto: ");
+                        miEjercicio6.setCantidad(cantidad);
+                        precio=miEjercicio6.precio(obtener, "dijite el precio del producto: ");
+                        product=miEjercicio6.getProducto();
+                        
+                        
+                        if(product.equals("ALIMENTOS"))
+                        { seleccion=1;
+                        descuento=10;
+                        miEjercicio6.setDescuento(descuento);
+                        }  
+                        
+                        else if(product.equals("VESTIMENTA"))
+                        {seleccion=2;
+                        descuento=5;
+                        miEjercicio6.setDescuento(descuento);}
+                        else{
+                            seleccion=3;
+                            miEjercicio6.setDescuento(descuento);
+                        }
+                        
+                        switch (seleccion){
+                            case 1:
+                                
+                                                 System.out.print("Factura");
+                                System.out.print("\nproducto "+product );
+                                System.out.print("\ncantidad "+cantidad);
+                                System.out.print("\nprecio "+precio);
+                                System.out.print("\ndescuento "+descuento+" %");
+                                System.out.print("\ntotal "+ ((precio*cantidad)-(precio*cantidad/descuento))+" pesos");       
+                                miEjercicio6.setTotal((precio*cantidad)-(precio*cantidad/descuento));
+                                break;
+                            case 2:
+                                                                 System.out.print("Factura");
+                                System.out.print("\nproducto "+product );
+                                System.out.print("\ncantidad "+cantidad);
+                                System.out.print("\nprecio "+precio);
+                                System.out.print("\ndescuento "+descuento+" %");
+                                System.out.print("\ntotal "+ ((precio*cantidad)-(precio*cantidad/descuento))+" pesos");     
+                                miEjercicio6.setTotal((precio*cantidad)-(precio*cantidad/descuento));
+                                break;
+                            case 3:
+                                                        System.out.print("Factura");
+                                System.out.print("\nproducto "+product );
+                                System.out.print("\ncantidad "+cantidad);
+                                System.out.print("\nprecio "+precio);
+                                System.out.print("\ndescuento "+descuento+" %");
+                                System.out.print("\ntotal "+ (precio*cantidad)+" pesos");   
+                                miEjercicio6.setTotal((precio*cantidad)-(precio*cantidad/descuento));
+                        }
+                    
+                        
+                        
+                    }
+                    
+    }
+  
     }
     
-}
+
